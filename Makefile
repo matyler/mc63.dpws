@@ -1,6 +1,6 @@
 SQLITE_SRC =	mc63_dpws.csv
 SQLITE_BIN =	mc63_dpws.sqlite
-SQLITE_BUILD =	src/build_sqlite.sh
+
 
 BINS =		$(SQLITE_BIN)
 
@@ -12,7 +12,7 @@ all:		$(BINS)
 
 
 $(SQLITE_BIN):	$(SQLITE_SRC)
-		$(SQLITE_BUILD) $(SQLITE_SRC) $(SQLITE_BIN)
+		src/build_sqlite.sh $(SQLITE_SRC) $(SQLITE_BIN)
 
 
 install:
@@ -20,4 +20,4 @@ install:
 uninstall:
 
 clean:
-		rm -f $(BINS)
+		rm -f $(BINS) *.tmp

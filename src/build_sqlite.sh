@@ -8,6 +8,9 @@ BIN_FILE="$2"
 
 rm -f "$BIN_FILE"
 
+TMP_FILE="$SRC_FILE.tmp"
+
+cat $SRC_FILE | tail -n +2 > $TMP_FILE
 
 echo "
 .mode csv
@@ -15,8 +18,10 @@ echo "
 CREATE TABLE Witness (
 	Name_Z		TEXT,
 	Name_A		TEXT,
-	Location	TEXT,
-	Locality	TEXT,
+	Location_A	TEXT,
+	Location_B	TEXT,
+	Photo_Film	TEXT,
+	Bunch_Pattern	TEXT,
 	Notes		TEXT,
 	Source		TEXT,
 	Year		INTEGER,
@@ -34,6 +39,6 @@ CREATE TABLE Witness (
 	Bunches		INTEGER,
 	Quality		INTEGER
 	);
-.import $SRC_FILE Witness
+.import $TMP_FILE Witness
 " | sqlite3 "$BIN_FILE"
 
